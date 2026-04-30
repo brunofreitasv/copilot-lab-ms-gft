@@ -393,3 +393,68 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: black;
 }
+.home-main-content {
+  padding: 3rem 1rem;
+}
+
+.home-card {
+  width: 100%;
+  max-width: 640px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: #1f2937;
+}
+
+.home-card h2 {
+  margin-top: 0;
+  color: #1e3a8a;
+}
+
+.home-card p {
+  color: #334155;
+}
+
+.contact-button,
+.submit-button {
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.contact-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-form label {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.confirmation-modal p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
