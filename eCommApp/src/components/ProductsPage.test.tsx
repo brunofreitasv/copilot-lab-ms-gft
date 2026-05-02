@@ -63,6 +63,14 @@ const products: Product[] = [
     reviews: [],
     inStock: true,
   },
+  {
+    id: 'ubs-cosplay',
+    name: 'UBS Cosplay',
+    price: 9.99,
+    image: 'ubs-cosplay.jpg',
+    reviews: [],
+    inStock: true,
+  },
 ];
 
 const createFetchResponse = (product: Product, ok = true) =>
@@ -70,6 +78,31 @@ const createFetchResponse = (product: Product, ok = true) =>
     ok,
     json: async () => product,
   } as Response);
+
+const mockProductsFetch = () => {
+  const productByFile = new Map(
+    products.map((product) => [`${product.id}.json`, product]),
+  );
+
+  return vi.spyOn(global, 'fetch').mockImplementation((input) => {
+    const url = String(input);
+    const file = url.split('/').pop() ?? '';
+    const matchedProduct = productByFile.get(file);
+
+    if (matchedProduct) {
+      return createFetchResponse(matchedProduct);
+    }
+
+    const fallbackName = file.replace('.json', '').replace(/[-_]/g, ' ') || 'Fallback Product';
+    return createFetchResponse({
+      id: file.replace('.json', '') || 'fallback-product',
+      name: fallbackName,
+      price: 1,
+      reviews: [],
+      inStock: true,
+    });
+  });
+};
 
 const renderWithCart = (addToCart = vi.fn()) => {
   return render(
@@ -88,11 +121,7 @@ describe('ProductsPage', () => {
     const user = userEvent.setup();
     const addToCart = vi.fn();
 
-    vi.spyOn(global, 'fetch')
-      .mockImplementationOnce(() => createFetchResponse(products[0]))
-      .mockImplementationOnce(() => createFetchResponse(products[1]))
-      .mockImplementationOnce(() => createFetchResponse(products[2]))
-      .mockImplementationOnce(() => createFetchResponse(products[3]));
+    mockProductsFetch();
 
     renderWithCart(addToCart);
 
@@ -114,11 +143,7 @@ describe('ProductsPage', () => {
   it('opens review modal, submits review, updates selected product, and closes modal', async () => {
     const user = userEvent.setup();
 
-    vi.spyOn(global, 'fetch')
-      .mockImplementationOnce(() => createFetchResponse(products[0]))
-      .mockImplementationOnce(() => createFetchResponse(products[1]))
-      .mockImplementationOnce(() => createFetchResponse(products[2]))
-      .mockImplementationOnce(() => createFetchResponse(products[3]));
+    mockProductsFetch();
 
     renderWithCart();
 
