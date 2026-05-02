@@ -27,6 +27,10 @@ export interface Product {
     price: number;
     description?: string;
     image?: string;
+    additionalImages?: string[];
+    category?: string;
+    stock?: number;
+    sku?: string;
     reviews: Review[];
     inStock: boolean;
 }
