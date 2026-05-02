@@ -1,0 +1,13 @@
+{
+    "id": "5",
+    "name": "UBS Cosplay",
+    "description": "High-quality UBS Cosplay costume, available in multiple sizes and colors. Includes accessories and is suitable for conventions, events, and themed parties.",
+    "price": 149.99,
+    "image": "pear.png",
+    "additionalImages": ["grapes.png"],
+    "category": "Cosplay/Costumes",
+    "stock": 50,
+    "sku": "UBS-COS-001",
+    "inStock": true,
+    "reviews": []
+}

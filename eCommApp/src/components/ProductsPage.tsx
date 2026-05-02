@@ -24,7 +24,8 @@ const ProductsPage = () => {
                     'apple.json',
                     'grapes.json',
                     'orange.json',
-                    'pear.json'
+                    'pear.json',
+                    'ubs-cosplay.json'
                 ];
                 const productPromises = productFiles.map(async (file) => {
                     const response = await fetch(`products/${file}`);
